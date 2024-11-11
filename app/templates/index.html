@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Procesamiento de imagenes</title>
+        <!-- Enlace a una hoja de estilos CSS -->
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+
+        <!-- Encabezado principal -->
+        <header>
+            <h1>Procesamiento de imagenes </h1>
+
+            <h2>Sube tus Imágenes para Procesar</h2>
+            <form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" accept="image/*" multiple required>
+                <p>Selecciona hasta 3 imágenes para subir</p>
+                <button type="submit">Subir y Procesar</button>
+            </form>
+
+        </header>
+
+    </body>
+</html>

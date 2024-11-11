@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados del Procesamiento de Imágenes</title>
+    <style>
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+        .image-group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 30px;
+        }
+        .image-group h2 {
+            text-align: center;
+        }
+        .images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .image-item {
+            margin: 10px;
+            text-align: center;
+        }
+        .image-item img {
+            width: 200px;
+            height: auto;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resultados del Procesamiento de Múltiples Imágenes</h1>
+
+        {% for image_set in processed_images %}
+            <div class="image-group">
+                <h2>Resultados para {{ image_set['original_filename'] }}</h2>
+                <div class="images">
+                    {% for operation, path in image_set.items() %}
+                        {% if operation != 'original_filename' %}
+                        <div class="image-item">
+                            <h3>{{ operation.replace('_', ' ').capitalize() }}</h3>
+                            <img src="{{ url_for('static', filename=path) }}" alt="{{ operation }}">
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
